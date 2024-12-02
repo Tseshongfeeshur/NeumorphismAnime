@@ -1,0 +1,102 @@
+body {
+    height: 80vh;
+    /* 调整高度使其展示完全 */
+    background-color: #e0e0e0;
+    /* 调整背景颜色使其适合新拟态风格 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 按钮 box 居中 */
+    -webkit-tap-highlight-color: transparent;
+    /* 关闭 Chrome Mobile 难看的点击反馈 */
+}
+
+#box {
+    height: 12em;
+    width: 14em;
+    /* 调整大小 */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    /* 文本居中 */
+    background: #e0e0e0;
+    /* 调整颜色使其符合背景 */
+    border-radius: 3em;
+    /* 巨大的硬圆角，蒙版可以实现完美曲率可是我懒 */
+    box-shadow: 10px 10px 20px 0 #bebebe,
+                -10px -10px 20px 0 #ffffff;
+    /* 盒子阴影（ps：我似乎发现了某个规律，就是这几个参数似乎满足 模糊参数 = x 偏移量 + y 偏移量，且 y 偏移量 = x 偏移量 */
+    cursor: pointer;
+    /* 光标变为 👆 样式，告诉用户该元素可点击 */
+    transition: transform .3s cubic-bezier(0.39, 0.58, 0.57, 1),
+                box-shadow .3s cubic-bezier(0.39, 0.58, 0.57, 1);
+    /* 过渡动画 */
+    user-select: none;
+    /* 禁止选择文字 */
+}
+
+#box:hover {
+    box-shadow: 24px 24px 48px #bcbcbc,
+                -24px -24px 48px #ffffff;
+    /* 鼠标悬停时阴影变大 */
+    transform: scale(1.02);
+    /* 鼠标悬停时元素放大 */
+}
+
+#box:active {
+    transition: box-shadow .1s ease,
+                transform .1s ease;
+    /* 点击时长很短，所以过渡动画要加快 */
+    box-shadow: 8px 8px 16px 0 #bebebe,
+                -8px -8px 16px 0 #ffffff;
+    /* 点击时阴影变小 */
+    transform: scale(0.98);
+    /* 点击时元素缩小 */
+}
+
+#box::after {
+    /* 用于平滑过渡按钮背景的伪元素 */
+    content: '';
+    position: absolute;
+    z-index: 1;
+    /* 层级较低，防止遮挡文字 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 填满盒子 */
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    /* 目标背景 */
+    border-radius: 3em;
+    /* 与盒子圆角相同 */
+    opacity: 0;
+    /* 初始透明 */
+    transition: opacity .1s ease;
+    /* 过渡动画 */
+    pointer-events: none;
+    /* 鼠标事件穿透 */
+}
+
+#box:active::after {
+    opacity: 1;
+    /* 点击时显示 */
+}
+
+#main-text {
+    font-family: 'PingFang SC', 'HarmonyOS_Regular', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: opacity .1s ease;
+    position: relative;
+    z-index: 2;
+    /* 层级较高防止遮挡 */
+}
+
+#emoji-text {
+    font-size: 1.3em;
+    transition: opacity .1s ease;
+    position: relative;
+    z-index: 2;
+}
