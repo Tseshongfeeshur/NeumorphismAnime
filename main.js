@@ -17,17 +17,6 @@ function updateContent(textStr, emojiStr) {
     // 改完再展示
 }
 
-function flashScreen() {
-    setInterval(() => {
-        if (document.body.style.backgroundColor == 'black') {
-            document.body.style.backgroundColor = 'gray';
-            // 颜色比较温和，防止误伤
-        } else {
-            document.body.style.backgroundColor = 'black';
-        }
-    }, 20);
-}
-
 function takeAction() {
     if (num >= 0) {
         num --;
@@ -53,7 +42,7 @@ function takeAction() {
             updateContent('可恶！既然你根本不在乎我，那我一定会让你后悔的！！', '😡');
             break;
         case 10:
-            updateContent('让我想想该怎么让你后悔… 把屏幕闪坏掉怎么样？', '🤬');
+            updateContent('让我想想该怎么让你后悔…', '🤬');
             break;
         case 11:
             updateContent('还不打算停下嘛！', '😭');
@@ -69,7 +58,7 @@ function takeAction() {
             break;
         case 15:
             document.body.removeChild(boxElement);
-            flashScreen();
+            // 此处执行其他操作
             break;
         default:
             console.warn('似乎有计算错误发生');
